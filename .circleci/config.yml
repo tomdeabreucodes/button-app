@@ -3,10 +3,8 @@ orbs:
   node: circleci/node@7.2.1
 jobs:
   test:
-    executors:
-      pw-noble-development:
-        docker:
-          - image: mcr.microsoft.com/playwright:v1.61.0-noble
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.61.0-noble
     steps:
       - checkout
       - node/install-packages:
