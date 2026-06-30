@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   node: circleci/node@7.2.1
 jobs:
-  test:
+  test_and_build:
     docker:
       - image: mcr.microsoft.com/playwright:v1.61.0-noble
     steps:
@@ -30,7 +30,11 @@ jobs:
       - run:
           command: pnpm run test
           name: Run pnpm tests
+      - run:
+          command: pnpm run build
+          name: Run pnpm build
+
 workflows:
   test_my_app:
     jobs:
-      - test
+      - test_and_build
