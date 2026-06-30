@@ -1,0 +1,19 @@
+version: 2.1
+orbs:
+  node: circleci/node@7.2.1
+jobs:
+  test:
+    executor:
+      name: node/default
+      tag: "24"
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: pnpm
+      - run:
+          command: pnpm run test
+          name: Run pnpm tests
+workflows:
+  test_my_app:
+    jobs:
+      - test
